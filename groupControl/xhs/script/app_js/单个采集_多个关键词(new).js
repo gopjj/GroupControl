@@ -36,12 +36,17 @@ try {
                     // 执行
                     run(keyword);
 
+                    // 清除后台
                     device.closeApp(runAppName);
+                    device.send(tcConst.KEY_RECENTAPP);
+                    delay(5000);
+                    device.click(0.5000,0.8900);
+
                     print(device.name + "---" + keyword + "---结束");
                     print(device.name + "---等待中...");
 
-                    // 5分钟
-                    delay(300000)
+                    // 10分钟
+                    delay(600000)
                     break;
 
                 } else {
