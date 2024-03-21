@@ -30,14 +30,14 @@ try {
                 if (runapp == 0) {
                     ret = get_Activity();
 
-                    print(device.name + key + "---开始");
+                    print(device.name + keyword + "---开始");
                     delay(3000);
 
                     // 执行
                     run(keyword);
 
                     device.closeApp(runAppName);
-                    print(device.name + "---" + key + "---结束");
+                    print(device.name + "---" + keyword + "---结束");
                     print(device.name + "---等待中...");
 
                     // 5分钟
@@ -315,18 +315,9 @@ function searchKeyword(titles, keyword) {
         checkNetError();
         checkDeviceError();
 
-        for (var z = 0; z < titles.length; z++) {
+        for (var z = titles.length - 1; z >= 0; z--) {
             if (clickNoteByTitle(titles[z], keyword)) {
                 titles.splice(z, 1);
-                print(
-                    device.name +
-                    "关键词:" +
-                    keyword +
-                    "   已经完成:" +
-                    finishedTitles +
-                    "  未完成:" +
-                    titles
-                );
             }
         }
         // 当读完时退出i循环
@@ -337,6 +328,15 @@ function searchKeyword(titles, keyword) {
         var slide = device.move(tcConst.movement.shiftDown);
         delay(500);
     }
+    print(
+        device.name +
+        "关键词:" +
+        keyword +
+        "   已经完成:" +
+        finishedTitles +
+        "  未完成:" +
+        titles
+    );
 }
 
 function run(keyword) {
